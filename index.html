@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yammy Pizza</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+    <div class="container" x-data="{
+            bigPizzaQty: 0, 
+            bigPizzaTotal: 0.00,
+            midPizzaQty: 0,
+            midPizzaTotal: 0.00,
+            smallPizzaQty: 0,
+            smallPizzaTotal: 0.00,
+            cartTotal: 0.00,
+            payNow:false,
+            paymentAmount:0, 
+            paymentMessage: '',
+
+           
+
+
+
+
+            buyBigPizza () {
+                this.bigPizzaTotal +=120;
+                this.bigPizzaQty +=1;
+                this.cartTotal +=120
+                
+            },
+            
+            clearBigPizza () {
+                if (this.bigPizzaQty >0) {
+                    this.bigPizzaTotal -=120;
+                    this.bigPizzaQty -=1;
+                    this.cartTotal -=120  
+                }
+               
+                
+            },
+          
+           buyMidPizza () {
+            this.midPizzaTotal +=90;
+            this.midPizzaQty +=1;
+            this.cartTotal +=90
+           },
+
+           
+            clearMidPizza (){
+            if (this.midPizzaQty >0) {
+
+            this.midPizzaQty -=1;
+            this.midPizzaTotal -=90;
+            this.cartTotal -=90
+            }
+           },
+
+           buySmallPizza () {
+            this.smallPizzaTotal +=60;
+            this.smallPizzaQty +=1;
+            this.cartTotal +=60
+           },
+
+            
+            clearSmallPizza () {
+            if (this.smallPizzaQty >0){
+
+            this.smallPizzaQty -=1;
+            this.smallPizzaTotal -=60;
+            this.cartTotal -=60
+}
+           },
+
+           makePayment(){
+            alert('!')
+            if (this.paymentAmount ==0) {
+                this.paymentMessage = 'no amount entered!'
+            }
+            },
+
+        }">
+        <h1 x-text="name"></h1>
+        <div class="header">
+            <div class="f3">
+                <h1>Yammy Pizza</h1>
+
+                <img src="https://user-images.githubusercontent.com/34037/167313951-4a866324-a3bf-4094-8bf8-8a90795957ab.png"
+                    alt="" width="40">
+
+                <img src="https://user-images.githubusercontent.com/34037/167313951-4a866324-a3bf-4094-8bf8-8a90795957ab.png"
+                    alt="" width="40">
+                <img src="https://user-images.githubusercontent.com/34037/167313951-4a866324-a3bf-4094-8bf8-8a90795957ab.png"
+                    alt="" width="40">
+
+                
+            </div>
+            <div class="f1">
+                <button x-on:click="">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXBHjyDahWoI41VuflPzfyq7-iZ9qZE58WYA&usqp=CAU"
+                        width="30" alt=""> pizza cart</button>
+
+                <strong> there are
+                    <span x-text=""></span> in the cart.
+                </strong>
+            </div>
+
+            <div class="cart-box ">
+                <div calss="cart" x-show="">
+                    <div>
+                        <button x-on:click="">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXBHjyDahWoI41VuflPzfyq7-iZ9qZE58WYA&usqp=CAU"
+                                width="30" alt="">
+                        </button>
+                    </div>
+                    <div class="">
+                        <h2> Cart <img
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXBHjyDahWoI41VuflPzfyq7-iZ9qZE58WYA&usqp=CAU"
+                                width="30" alt="">
+                        </h2>
+                    </div>
+                </div>
+
+                <table>
+                    <tr>
+                        <td>Big Pizza</td>
+                        <td>
+
+                            <button x-on:click="buyBigPizza">+</button>
+                            <button x-on:click="clearBigPizza">-</button>
+                        </td>
+                        <td>
+                            <span x-text="bigPizzaQty"></span>
+                        </td>
+                        <td>
+                            R <span x-text="bigPizzaTotal.toFixed(2)"></span>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>Mid Pizza</td>
+                        <td>
+
+                            <button x-on:click="buyMidPizza">+</button>
+                            <button x-on:click="clearMidPizza">-</button>
+                        </td>
+                        <td>
+                            <span x-text="midPizzaQty"></span>
+                        </td>
+                        <td>
+                            R <span x-text="midPizzaTotal.toFixed(2)"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Small Pizza</td>
+                        <td>
+
+                            <button x-on:click="buySmallPizza">+</button>
+                            <button x-on:click="clearSmallPizza">-</button>
+                        </td>
+                        <td>
+                            <span x-text="smallPizzaQty"></span>
+                        </td>
+                        <td>
+                            R <span x-text="smallPizzaTotal.toFixed(2)"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> Total </td>
+                        <td>
+
+                            <span x-text="smallPizzaQty"></span>
+                        </td>
+                        <td>
+                            R <span x-text="cartTotal.toFixed(2)"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div x-show="payNow">
+                                <div class="messege" x-text="paymentMessage"> </div>
+                                <div>
+                                    <label for="">payment amount</label>
+                                    <input class="input" type="number" placeholder="payment amount"
+                                        x-model="paymentAmount">
+
+                                    <button x-on:click="makePayment" class="btn">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXBHjyDahWoI41VuflPzfyq7-iZ9qZE58WYA&usqp=CAU"
+                                            width="20" alt="">
+                                        pay now </button>
+                                </div>
+                                <div x-text="paymentAmount"> </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button x-show="!payNow" x-on:click="payNow=true" class="btn">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXBHjyDahWoI41VuflPzfyq7-iZ9qZE58WYA&usqp=CAU"
+                                    width="20" alt="">
+                                pay </button>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+                <div class="large-pizza">
+                    <image class="large-image"
+                        src="https://user-images.githubusercontent.com/34037/167313951-4a866324-a3bf-4094-8bf8-8a90795957ab.png"
+                        width="50" alt="">
+                        <h2>Large Pizza</h2>
+                        <h3>R120.00</h3>
+                        <button class="buy btn" x-on:click="buyBigPizza">
+                            <img src=" https://user-images.githubusercontent.com/34037/167313951-4a866324-a3bf-4094-8bf8-8a90795957ab.png"
+                                alt="" width="20">
+                            buy </button>
+                        <div> Pizza Ipsum is a lorem ipsum generator for a very delicious Lorem Ipsum. There are various
+                            other Ipsum’s out there including two of my favorites: Bacon Ipsum, and Cupcake Ipsum. These
+                            are
+                            all fun spinoffs of Lorem Ipsum which is dummy text used as mock-up text for publishing, and
+                            in
+                            more recent history for designing layouts for web sites and blogs.</div>
+                </div>
+
+                <div class="medium-pizza">
+                    <img class="medium-image"
+                        src="https://user-images.githubusercontent.com/34037/167313951-4a866324-a3bf-4094-8bf8-8a90795957ab.png"
+                        width="50" alt="">
+                    <h2>Medium Pizza</h2>
+                    <h3>R90.00</h3>
+                    <button class="buy btn" x-on:click="buyMidPizza">
+                        <img src=" https://user-images.githubusercontent.com/34037/167313951-4a866324-a3bf-4094-8bf8-8a90795957ab.png"
+                            alt="" width="20">
+                        buy </button>
+                    <div> Pizza Ipsum is a lorem ipsum generator for a very delicious Lorem Ipsum. There are various
+                        other
+                        Ipsum’s out there including two of my favorites: Bacon Ipsum, and Cupcake Ipsum. These are all
+                        fun
+                        spinoffs of Lorem Ipsum which is dummy text used as mock-up text for publishing, and in more
+                        recent
+                        history for designing layouts for web sites and blogs.</div>
+                </div>
+
+                <div class="small-pizza">
+                    <image class="small-image"
+                        src="https://user-images.githubusercontent.com/34037/167313951-4a866324-a3bf-4094-8bf8-8a90795957ab.png"
+                        width="50" alt="">
+
+                        <h2>Small Pizza</h2>
+                        <h3>R60.00</h3>
+                        <button class="buy btn" x-on:click="buySmallPizza">
+                            <img src=" https://user-images.githubusercontent.com/34037/167313951-4a866324-a3bf-4094-8bf8-8a90795957ab.png"
+                                alt="" width="20">
+                            buy </button>
+                        <div> Pizza Ipsum is a lorem ipsum generator for a very delicious Lorem Ipsum. There are various
+                            other Ipsum’s out there including two of my favorites: Bacon Ipsum, and Cupcake Ipsum. These
+                            are
+                            all fun spinoffs of Lorem Ipsum which is dummy text used as mock-up text for publishing, and
+                            in
+                            more recent history for designing layouts for web sites and blogs. </div>
+                </div>
+            </div>
+
+
+
+            <div class="contact-us">
+                <h2>Contact us</h2>
+                <div>Phone: 011 22 33 44 5
+                    <br> Email: info@yammypizza.co.za
+                    <br> Address: Johannesburg APK
+                </div>
+
+</body>
+
+</html>
